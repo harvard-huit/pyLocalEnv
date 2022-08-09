@@ -6,11 +6,11 @@ This package installs scripts that can run from the command line. The script gen
 
 ## Install
 
-        pip install https://github.com/culibraries/genWorkflowTaskQueue/zipball/master
+        pip install https://github.com/mbstacy/py-local-env/zipball/main
 
 ## Upgrade
 
-        pip install https://github.com/culibraries/genWorkflowTaskQueue/zipball/master  -U
+        pip install https://github.com/mbstacy/py-local-env/zipball/main  -U
 
 
 ## Operation
