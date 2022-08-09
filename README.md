@@ -1,7 +1,7 @@
-genEnv
+genLocalEnvFile
 ====================
 
-This package installs scripts that can run from the command line. The script generates an `env` file to be used with `docker run` and a `env_local` file for setting local terminal environment variables.
+This package installs scripts that can run from the command line. The script generates an `.env` file to be used with `docker run` and a `.env_local` file for setting local terminal environment variables.
 
 
 ## Install
@@ -17,7 +17,7 @@ This package installs scripts that can run from the command line. The script gen
 
 Must be logged into the appropriate AWS account for secrets  `stack/secretname` to exist.
 
-        $ genEnv --help
+        $ genLocalEnvFile --help
                 usage: genEnv [-h] [-s STACK] [-f FILENAME]
 
                 Create 'env' file for local development.
@@ -31,7 +31,7 @@ Must be logged into the appropriate AWS account for secrets  `stack/secretname` 
         $ # default stack=dev
           # default file location
           # {current directory}/ansible_vars/{ stack }_ansible_vars.yml
-        $ genEnv
+        $ genLocalEnvFile
         $ genEnv -s stage 
         The requested secret stage/apigee-nonprod-common@harvard.edu was not found
 
