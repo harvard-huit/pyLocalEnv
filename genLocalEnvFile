@@ -3,8 +3,6 @@
 #from ast import Str
 import boto3
 from botocore.exceptions import ClientError
-
-import sys
 import os, yaml
 import argparse
 
@@ -56,19 +54,18 @@ def generateEnvFile(stack,filename):
     data=readAnsibleVarsfile(filename)
     envtext=""
     bashText=""
-    print("shit")
     with open(".env",'w') as f1:
         for itm in data['target_app_secrets_ref']:
             for i in itm:
                 secret_name="{0}/{1}".format(stack,itm[i])
                 value=get_secret(secret_name)
-                envtext= envtext + "{0}={1}\n".format(i,value)
-                bashText= bashText + "export {0}='{1}'\n".format(i,value)
+                envtext= envtext + "{0}={1}\n".format(i,"".join(value.split()))
+                bashText= bashText + "export {0}='{1}'\n".format(i,"".join(value.split()))
                 #print(envtext)
 
         for itm in data['target_app_env']:
-            envtext=envtext + "{0}={1}\n".format(itm['name'],itm['value'])
-            bashText= bashText + "export {0}='{1}'\n".format(itm['name'],itm['value'])
+            envtext=envtext + "{0}={1}\n".format(itm['name'],"".join(itm['value'].split()))
+            bashText= bashText + "export {0}='{1}'\n".format(itm['name'],"".join(itm['value'].split()))
         f1.write(envtext)
     with open(".env_local",'w') as f1:
         f1.write(bashText)
