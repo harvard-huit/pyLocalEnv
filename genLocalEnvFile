@@ -12,9 +12,6 @@ class UserNamespace(object):
     pass
 
 def get_secret(secret_name,region_name="us-east-1"):
-    # secret_name = "MySecretName"
-    # region_name = "us-west-2"
-
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
@@ -86,5 +83,4 @@ if __name__ == '__main__':
                                 """)
     args=parser1.parse_args()
     generateEnvFile(args.stack, args.filename)
-    #os.system('source .env')
 
