@@ -23,6 +23,7 @@ def get_secret(secret_name,region_name="us-east-1"):
             SecretId=secret_name
         )
     except ClientError as e:
+        print(e.response['Error']['Code'])
         if e.response['Error']['Code'] == 'ResourceNotFoundException':
             print("The requested secret " + secret_name + " was not found")
         elif e.response['Error']['Code'] == 'InvalidRequestException':
@@ -43,6 +44,17 @@ def get_secret(secret_name,region_name="us-east-1"):
             binary_secret_data = get_secret_value_response['SecretBinary']
             return binary_secret_data
 
+def checkAWSToken():
+    status=True
+    sts = boto3.client('sts')
+    try:
+        sts.get_caller_identity()
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'ExpiredToken':
+            print("The AWS Token has expired. Please login to the AWS CLI and try again.")
+            status=False
+    return status
+    
 def readAnsibleVarsfile(filename):
     with open(filename, 'r') as f1:
         return yaml.safe_load(f1.read())
@@ -82,5 +94,6 @@ if __name__ == '__main__':
                                 Default: {current directory}/ansible_vars/{stack}_ansible_vars.yml
                                 """)
     args=parser1.parse_args()
-    generateEnvFile(args.stack, args.filename)
+    if checkAWSToken():
+        generateEnvFile(args.stack, args.filename)
 

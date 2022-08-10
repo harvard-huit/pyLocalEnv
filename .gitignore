@@ -1,5 +1,6 @@
 ansible_vars
 genEnv.egg-info
+genLocalEnvFile.egg-info
 build
 virtpy
 venv
