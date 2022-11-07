@@ -6,11 +6,11 @@ This package installs scripts that can run from the command line. The script gen
 
 ## Install
 
-        pip install https://github.com/mbstacy/py-local-env/zipball/main
+        pip install https://github.com/harvard-huit/pyLocalEnv/zipball/main
 
 ## Upgrade
 
-        pip install https://github.com/mbstacy/py-local-env/zipball/main  -U
+        pip install https://github.com/harvard-huit/pyLocalEnv/zipball/main  -U
 
 
 ## Operation
