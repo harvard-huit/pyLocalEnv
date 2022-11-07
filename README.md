@@ -1,8 +1,7 @@
 genLocalEnvFile
 ====================
 
-This package installs scripts that can run from the command line. The script generates an `.env` file to be used with `docker run` and a `.env_local` file for setting local terminal environment variables.
-
+This package installs scripts that can run from the command line. In addition, the script generates a `.env` file used with `docker run` and a `.env_local` file for setting local terminal environment variables.
 
 ## Install
 
