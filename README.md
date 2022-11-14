@@ -31,7 +31,7 @@ Must be logged into the appropriate AWS account for secrets  `stack/secretname` 
           # default file location
           # {current directory}/ansible_vars/{ stack }_ansible_vars.yml
         $ genLocalEnvFile
-        $ genEnv -s stage 
+        $ genLocalEnvFile -s stage 
         The requested secret stage/apigee-nonprod-common@harvard.edu was not found
 
 The last example is the result of logging into AWS Dev vs Prod AWS account. `stage` is in Prod AWS account.
