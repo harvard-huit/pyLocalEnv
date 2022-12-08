@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.9
+#!/usr/bin/env python
 
 #from ast import Str
 import boto3
@@ -59,7 +59,7 @@ def readAnsibleVarsfile(filename):
     with open(filename, 'r') as f1:
         return yaml.safe_load(f1.read())
 
-def generateEnvFile(stack,filename):
+def generateEnvFile(stack,filetype,filename):
     data=readAnsibleVarsfile(filename)
     envtext=""
     bashText=""
@@ -76,9 +76,12 @@ def generateEnvFile(stack,filename):
             for itm in data['target_app_env']:
                 envtext=envtext + "{0}={1}\n".format(itm['name'],"".join(itm['value'].split()))
                 bashText= bashText + "export {0}='{1}'\n".format(itm['name'],"".join(itm['value'].split()))
-        f1.write(envtext)
-    with open(".env_local",'w') as f1:
-        f1.write(bashText)
+        if filetype != 'docker':
+            f1.write(bashText)
+        else:
+            f1.write(envtext)
+    # with open(".env_local",'w') as f1:
+    #     f1.write(bashText)
 
 
 if __name__ == '__main__':
@@ -86,6 +89,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("-s","--stack", type=str,default="dev",
                         help="stack(default='dev')")
+    parser.add_argument("-t","--type", type=str,default="docker",
+                        help="Type of file creation shell or docker(default='docker')")
     parser.parse_known_args(namespace=user_namespace)
     parser1 = argparse.ArgumentParser(description="Create 'env' file for local development.", 
     parents=[parser])
@@ -96,5 +101,5 @@ if __name__ == '__main__':
                                 """)
     args=parser1.parse_args()
     if checkAWSToken():
-        generateEnvFile(args.stack, args.filename)
+        generateEnvFile(args.stack,args.type, args.filename)
 
