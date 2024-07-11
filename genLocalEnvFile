@@ -69,13 +69,16 @@ def generateEnvFile(stack,filetype,filename):
                 for i in itm:
                     secret_name="{0}/{1}".format(stack,itm[i])
                     value=get_secret(secret_name)
-                    envtext= envtext + "{0}={1}\n".format(i,"".join(value.split()))
-                    bashText= bashText + "export {0}='{1}'\n".format(i,"".join(value.split()))
+                    if '\n' in value:
+                        envtext= envtext + "{0}={1}\n".format(i,repr(value))
+                    else:
+                        envtext= envtext + "{0}={1}\n".format(i,value)
+                    bashText= bashText + "export {0}='{1}'\n".format(i,value)
                     #print(envtext)
         if 'target_app_env' in data:
             for itm in data['target_app_env']:
-                envtext=envtext + "{0}={1}\n".format(itm['name'],"".join(itm['value'].split()))
-                bashText= bashText + "export {0}='{1}'\n".format(itm['name'],"".join(itm['value'].split()))
+                envtext=envtext + "{0}={1}\n".format(itm['name'],itm['value'])
+                bashText= bashText + "export {0}='{1}'\n".format(itm['name'],itm['value'])
         if filetype != 'docker':
             f1.write(bashText)
         else:
