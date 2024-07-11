@@ -39,5 +39,4 @@ The last example is the result of logging into AWS Dev vs Prod AWS account. `sta
 ### Outputs two files
 ALWAYS ADD FILES TO `.gitignore`. Never commit files to code repository.
 
-* .env : docker env file `docker run --env-file ./.env -it {{ image }}`
-* .env_local : `. .env_local`
+* .env : docker env file or shell env vars
