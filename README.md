@@ -1,7 +1,7 @@
 genLocalEnvFile
 ====================
 
-This package installs scripts that can run from the command line. In addition, the script generates a `.env` file used with `docker run` and a `.env_local` file for setting local terminal environment variables.
+This package installs scripts that can run from the command line. In addition, the script generates a `.env` file. File format options(-t) for `Shell` and `Docker`. 
 
 ## Install
 
@@ -16,17 +16,18 @@ This package installs scripts that can run from the command line. In addition, t
 
 Must be logged into the appropriate AWS account for secrets  `stack/secretname` to exist.
 
-        $ genLocalEnvFile --help
-                usage: genEnv [-h] [-s STACK] [-f FILENAME]
+        $ genLocalEnvFile -h
+                usage: genLocalEnvFile [-h] [-s STACK] [-t TYPE] [-f FILENAME]
 
                 Create 'env' file for local development.
 
-                optional arguments:
+                options:
                 -h, --help            show this help message and exit
-                -s STACK, --stack STACK
-                                        stack(default=`dev`)
+                -s STACK, --stack STACK 
+                                stack(default='dev')
+                -t TYPE, --type TYPE  Type of file creation shell or docker(default='docker')
                 -f FILENAME, --filename FILENAME
-                                        Specific ansible yaml file. Default: {current directory}/ansible_vars/{ stack }_ansible_vars.yml
+                                Specific filename to pass in ansible yaml file. Default: {current directory}/k8s_vars/{stack}_k8s_vars.yml
         $ # default stack=dev
           # default file location
           # {current directory}/ansible_vars/{ stack }_ansible_vars.yml
