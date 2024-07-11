@@ -96,7 +96,7 @@ if __name__ == '__main__':
     parents=[parser])
     parser1.add_argument("-f","--filename", type=str, 
                         default="{0}/k8s_vars/{1}_k8s_vars.yml".format(os.getcwd(),user_namespace.stack) ,
-                        help="""Specific filename to pass in ansible yaml file. 
+                        help="""Specific filename to pass in k8s vars yaml file. 
                                 Default: {current directory}/k8s_vars/{stack}_k8s_vars.yml
                                 """)
     args=parser1.parse_args()

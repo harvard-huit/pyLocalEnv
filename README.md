@@ -27,7 +27,7 @@ Must be logged into the appropriate AWS account for secrets  `stack/secretname` 
                                 stack(default='dev')
                 -t TYPE, --type TYPE  Type of file creation shell or docker(default='docker')
                 -f FILENAME, --filename FILENAME
-                                Specific filename to pass in ansible yaml file. Default: {current directory}/k8s_vars/{stack}_k8s_vars.yml
+                                Specific filename to pass in k8s variable yaml file. Default: {current directory}/k8s_vars/{stack}_k8s_vars.yml
         $ # default stack=dev
           # default file location
           # {current directory}/ansible_vars/{ stack }_ansible_vars.yml
